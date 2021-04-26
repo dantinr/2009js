@@ -7,16 +7,21 @@
 <body>
 <script>
 
-    var obj1 = {}
-    obj1.name = "zhangsan"
-    obj1.age = 22
-    obj1.say = function(){
-        console.log("Hello world")
+    function Person(name,age,sex)
+    {
+        this.name = name
+        this.age = age
+        this.sex = sex
     }
 
-    console.log(obj1)
-    console.log(obj1.name)
-    obj1.say()
+    Person.prototype.name = "noname"
+    Person.prototype.age = 0
+    Person.prototype.sex = "保密"
+
+
+
+    var p1 = new Person()
+    console.log(p1.name)
 
 
 </script>

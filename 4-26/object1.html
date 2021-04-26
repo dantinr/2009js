@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  //创建对象的方式
+  // 1 从构造函数new
+  function Person(name,age){
+    this.name = name
+    this.age = age
+  }
+
+  var p1 = new Person("zhangsan",11)
+  var p2 = new Person("lisi",22)
+
+  // 2 对象字面量  {}
+
+  var obj1 = {}
+  var obj2 = {
+    color: "red",
+    width: "100px"
+  }
+
+  obj2.hello = function(){
+    alert("Hello world")
+  }
+
+  console.log(obj2)
+  console.log(obj2.color)     // red
+  obj2.hello()
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+  var obj = {
+    name: "zhangsan",
+    age: 11,
+    sex: "M"
+  }
+
+  // 向 obj中添加一个属性 email
+  obj.email = "zhangsan@qq.com"
+
+  console.log(obj)
+  // 删除 obj对象中的 age属性
+  delete obj.age
+  console.log(obj)
+
+  //对象的枚举  for in
+  for (k in obj){
+    console.log(k,obj[k])
+  }
+
+
+
+</script>
+</body>
+</html>

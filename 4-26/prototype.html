@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>原型 prototype </title>
+</head>
+<body>
+<script>
+
+
+  var arr = new Array()
+
+
+
+
+  // 定义一个构造函数
+  function Person(name,age,sex)
+  {
+    this.name = name
+    this.age = age
+    this.sex = sex
+  }
+
+  Person.prototype.name = "noname"
+  Person.prototype.age = 0
+  Person.prototype.sex = "保密"
+
+  var p1 = new Person()
+  console.log(p1)
+  console.log(p1.name)
+  console.log(p1.age)
+  console.log(p1.sex)
+
+  var p2 = new Person()
+  console.log(p2)
+  console.log(p2.name)
+  console.log(p2.age)
+  console.log(p2.sex)
+
+  var p3 = new Person("zhangsan",11,"F")
+  console.log(p3)
+
+
+
+
+</script>
+</body>
+</html>

@@ -7,14 +7,27 @@
 <body>
 <script>
 
-    function f1(){
-        var a = 123
-        function f2(){
-            return a
-        }
+    function Person()
+    {
+
     }
 
-    console.log( f1()() )
+    Person.prototype.name = "noname"
+    Person.prototype.sex = "保密"
+    Person.prototype.age = 0
+
+
+    function Asian()
+    {
+
+    }
+
+    var a1 = new Asian()
+
+    console.log(Object.getPrototypeOf(a1))
+
+
+
 
 
 </script>

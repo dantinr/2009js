@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+
+  function Person()
+  {
+
+  }
+  Person.prototype.name = "noname"
+
+
+
+  function Asian()
+  {
+
+  }
+  Asian.prototype = new Person()
+  Asian.prototype.color = "yellow"
+  var p2 = new Asian()
+
+  
+  function Chinese()
+  {
+
+  }
+  Chinese.prototype = new Asian()
+  var p3 = new Chinese()
+  console.log(p3)
+  console.log(p3.name)
+  console.log(p3.color)
+  console.log(p3.xxx)
+
+
+  console.log("Person的原型:",Person.prototype)
+
+
+
+
+</script>
+</body>
+</html>

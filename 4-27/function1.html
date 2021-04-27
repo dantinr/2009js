@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+  <div>
+    <button id="btn">点击</button>
+  </div>
+  <div>
+    <p class="p1">AAAAA</p>
+    <p class="p1">BBBBB</p>
+    <p class="p1">CCCCC</p>
+    <p class="p1">DDDDD</p>
+
+    <span>AAAA</span>
+    <span>VBBB</span>
+    <span>CCCC</span>
+  </div>
+
+
+  <script>
+
+    function $(el){
+      var i = el[0]
+      if(i == "#"){
+          alert("ID选择器")
+        document.getElementById()
+      }else if(i == "."){
+        alert("class选择器")
+        document.getElementsByClassName()
+      }else{
+        alert("元素选择器")
+        document.getElementsByTagName()
+      }
+    }
+
+
+    $("span")
+
+  </script>
+</body>
+</html>

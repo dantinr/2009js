@@ -6,6 +6,43 @@
 </head>
 <body>
 <script>
+    var arr = [11,22,22,55,66,11,88,66,77,66]
+
+
+    var total = 0
+    arr.forEach(function(v){
+        total +=  v         // total = total + v
+    })
+    console.log(total)
+
+
+
+    //封装成函数形式
+    function getPos(arr,x){
+        var pos = []        //保存元素的位置
+        arr.forEach(function(v,k){
+            if(v==x){
+                console.log("位置： ",k)
+                pos.push(k)
+            }
+        })
+        return pos
+    }
+
+    console.log(getPos(arr,22))
+    console.log(getPos(arr,55))
+    console.log(getPos(arr,66))
+
+    // //找出 66 的位置
+    // var pos = []        //保存元素的位置
+    // arr.forEach(function(v,k){
+    //     if(v==66){
+    //         console.log("位置： ",k)
+    //         pos.push(k)
+    //     }
+    // })
+    //
+    // console.log(pos)
 
 </script>
 </body>

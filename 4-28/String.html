@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  let str1 = "abcdefg"
+
+
+  console.log(str1.repeat(3))
+  console.log(str1.padStart(10,"y"))
+  console.log(str1.padEnd(10,"x"))
+
+  console.log(str1.slice(1,4))
+
+  console.log(str1.split("+").join("#"))
+
+
+  console.log(str1.endsWith("dxx"))
+
+  //检测 子串
+  console.log(str1.includes("orxx"))
+
+  console.log(typeof str1)
+  //获取字符串的长度
+  let length = str1.length
+  console.log("length: ",length)
+
+  //访问某个位置
+  console.log(str1[3])
+
+  // 找到给定字符串的位置
+  console.log( str1.indexOf("xx") )
+
+  // charAt 给指定位置，返回字符
+  console.log(str1.charAt(6))
+
+  console.log( str1.concat(" aaa"," bbb"," ccc") )
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+
+
+  function ajax(obj){
+    // 1实例化  XHR
+    var xhr = new XMLHttpRequest()
+
+    // 2 监听函数
+    xhr.onreadystatechange = function(){
+      //console.log(xhr.readyState)
+      if(xhr.readyState==4 && xhr.status==200){
+        //接收服务器返回的数据
+        //console.log(typeof xhr.responseText)
+        //console.log(xhr.responseText)
+        var res = JSON.parse(xhr.responseText)
+
+        // 请求成功后的处理函数
+        obj.success(res)
+
+      }
+    }
+
+    // 3 open
+    xhr.open(obj.method,obj.url)
+
+    // 4 send
+    xhr.send()
+  }
+
+
+
+  ajax({
+    url: "api.json",
+    method: "get",
+    data:{name:"zhangsan",age:11},
+    success:function(res){
+      console.log(res)
+    }
+  })
+
+
+</script>
+</body>
+</html>

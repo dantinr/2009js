@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+    <script>
+
+
+        var json_str = '{"name":"zhangsan","age":11,"email":"zhangsan@qq.com"}'
+        console.log(JSON.parse(json_str))
+
+
+        var obj = {
+            name: "zhangsan",
+            age: 11,
+            email : "zhangsan@qq.com"
+        }
+
+        console.log(JSON.stringify(obj))
+
+
+        function Ajax(param){
+            console.log(param)
+            // 实例化 XHR
+            var xhr = new XMLHttpRequest()
+
+            //检测 readyState 状态
+            xhr.onreadystatechange = function (ev){
+                console.log("readyState",xhr.readyState)
+                if(xhr.readyState==4 && xhr.status==200){
+                    console.log(xhr.responseText)
+                    console.log(JSON.parse(xhr.responseText))
+                    //console.log(JSON.stringify(xhr.responseText))
+                }
+
+            }
+
+            // 打开链接  open
+            xhr.open(param.method,param.url)
+
+            // 发送请求  send
+            xhr.send()
+        }
+
+
+
+        Ajax({
+            url: "api.php",
+            method: "get",
+            data:{name:"zhangsan",age:11},
+            success: function(res){
+                console.log(res)
+            }
+        })
+
+    </script>
+</body>
+</html>

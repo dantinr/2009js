@@ -7,6 +7,24 @@
 <body>
 <script>
 
+    function add(...args)
+    {
+        let total = 0
+        args.forEach(function(v){
+            total += v
+        })
+        return total
+    }
+
+    function hello(...args){        //  rest参数
+        return add(...args)
+    }
+
+    console.log( hello(11,22,33,44) )
+
+
+
+
 </script>
 </body>
 </html>

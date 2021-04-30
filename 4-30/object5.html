@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+  let obj1 = {
+    name: "zhangsan",
+    age: 11
+  }
+
+  Object.defineProperty(obj1,"email",{
+    value: "zhangsan@qq.com",
+  })
+
+  console.log(Object.keys(obj1))
+  console.log(Object.getOwnPropertyNames(obj1))
+  console.log(1111111111111)
+
+
+  // 将对象转为 JSON字符串
+  console.log(JSON.stringify(obj1))
+  // 将JSON字符串转为 JS对象
+  console.log(JSON.parse( JSON.stringify(obj1) ))
+
+  console.log(1111111111)
+
+
+  console.log(Object.keys(obj1))
+
+
+  for(k in obj1){
+    console.log(k)
+  }
+
+  let desc1 = Object.getOwnPropertyDescriptor(obj1,'name')
+  let desc2 = Object.getOwnPropertyDescriptor(obj1,'email')
+  console.log(desc1)
+  console.log(desc2)
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    var obj1 = {
+        name: "zhangsan",
+        age : 11,
+        hello : function(){
+            console.log("Hello world")
+        },
+        haha(){
+            console.log("haha")
+        }
+    }
+
+
+    let name = "lisi"
+    let age = 22
+    let say = function(){
+        console.log("haha")
+    }
+
+    let obj2 = {
+        name,age,say
+    }
+
+    console.log(obj2)
+    obj2.say()
+
+
+</script>
+</body>
+</html>

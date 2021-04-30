@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script>
+
+  console.log(Set.prototype)
+
+  const arr1 = [11,22,33,44,88,33,22,88,22]
+  const s1 = new Set(arr1)
+  console.log(s1)
+  const arr2 = Array.from(s1)     //将set转为 Array
+  console.log("arr2: ",arr2)
+
+
+  s1.add(666)     // 添加元素
+  s1.add(777)
+  s1.forEach(function(v,k){
+    console.log(k,v)
+  })
+
+  console.log(s1)
+
+  console.log(s1.has(99))   //检测 set中 是否包含 22
+
+  s1.delete(33)         // 删除 set中 元素 33
+  //let size = s1.size      //获取 set中 元素的个数
+  console.log(s1)
+  s1.clear()
+  console.log("size: "+s1.size)
+
+
+
+  const s = new Set()
+  s.add(11)
+  s.add(22)
+  s.add(33)
+  s.add(22)
+  console.log(s)
+</script>
+
+</body>
+</html>

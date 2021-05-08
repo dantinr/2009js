@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  class A{
+
+    static username = "noname"
+
+    helloA(){
+      console.log("AAAAAA")
+    }
+  }
+
+  class B extends A{
+    static age = 0
+    helloB(){
+      console.log("BBBBBBB")
+    }
+  }
+
+  class C extends B{
+    static sex = "M"
+  }
+
+  const obj = new C()
+  console.log(obj)
+
+  console.log(C.age)
+  console.log(C.username)
+  console.log(C.sex)
+
+</script>
+</body>
+</html>

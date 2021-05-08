@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  class A{
+    //构造方法
+    constructor() {
+    }
+
+    //定义一个静态方法，该方法 使用 类名.方法名()访问  不需要实例化
+    static hello(){
+      console.log("Hello")
+    }
+
+    //定义一个普通方法  通过实例访问  实例.方法名()
+    haha(){
+      console.log("haah")
+    }
+  }
+
+  const obj1 = new A()
+  obj1.haha()
+  A.hello()
+
+</script>
+</body>
+</html>

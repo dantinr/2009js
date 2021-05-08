@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>迭代器</title>
+</head>
+<body>
+<script>
+
+  function f1(){
+    function f2(){
+      return "abc"
+    }
+    return f2
+  }
+
+  //console.log(f1()())   // abc
+
+
+  let arr1 = [11,22,33,44,55]
+
+  console.log(Array.prototype)
+  //获取内部的迭代器接口
+  let it = arr1[Symbol.iterator]()
+  //手动迭代 调用 next方法
+  console.log(it.next())
+  console.log(it.next())
+  console.log(it.next())
+  console.log(it.next())
+  console.log(it.next())
+  console.log(it.next())
+
+</script>
+</body>
+</html>

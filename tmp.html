@@ -6,73 +6,57 @@
 </head>
 <body>
 <script>
+
+
+    console.log(Set.prototype)
+    console.log(Map.prototype)
+    console.log(Array.prototype)
+
     let obj1 = {
         name: "zhangsan",
-        age : 11,
-        hello(){
-            console.log(11111)
-        },
-        haha:function(){
-
-        },
-        score:[11,22,33,44],
-        home:{
-
-        }
+        age: 11,
+        sex: "M",
+        hello(){},
     }
 
-    //获取对象的原型 __proto__
-    let po = Object.getPrototypeOf(obj1)
-    console.log( Object.prototype == Object.getPrototypeOf(obj1))
-
-    obj1.sex = "M"
-
-    Object.defineProperty(obj1,"email",{
-        value: "zhangsan@qq.com",
-        writable: true,             // 表示属性可写
-        configurable: true,         // 表示属性可通过 delete 删除
-        enumerable: true,           // 表示可枚举
-    })
-
-    //属性拦截器  get / set
-
-    Object.defineProperty(obj1,"address",{
-        //当读 对象的 address属性时触发
-        get: function(){
-            console.log("触发了get方法")
-        },
-        set:function(new_value){
-            console.log("触发了set方法")
-        }
-    })
-
-    // 读 address属性
-    obj1.address
-    obj1.address = "北京"
-
-    console.log(obj1)
-
-    //枚举对象的属性
-    for(k in obj1){
-        console.log(k,obj1[k])
+    let p1 = {
+        name: "lisi"
+    }
+    let p1_info = {
+        sex: "M",
+        address: "北京"
     }
 
-    //获取对象中的键（属性名）
-    let karr = Object.keys(obj1)
-    console.log("对象的key: ",karr)
+    let m1 = new Map()
+    m1.set("xxx","aaaa")
+    m1.set("yyy","bbbb")
+    m1.set("zzz","cccc")
+    m1.set(p1,p1_info)
+    console.log(m1)
 
-    //获取对象的 键值对
-    let kv = Object.entries(obj1)
-    console.log("对象的键值对：",kv)
 
-    // 获取对象中key对应的值
-    let varr = Object.values(obj1)
-    console.log("对象中的值：",varr)
 
-    //删除对象中的属性
-    console.log("删除前:",obj1)
-    delete obj1.name
-    console.log("删除后： ",obj1)
+
+
+    let arr1 = [11,22,33,44]
+
+    for(v of arr1){
+        console.log(v)
+    }
+
+    let s1 = new Set()
+    console.log(s1)
+    s1.add("a")
+    s1.add("b")
+    s1.add("c")
+    console.log(s1)
+    console.log(s1.size)
+
+    for(v of s1){
+        console.log(v)
+    }
+
+
 
 
 

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Proxy</title>
+</head>
+<body>
+<script>
+  // 代理 拦截器 过滤器
+
+  let obj1 = {
+    name: "zhangsan",
+    age: 11
+  }
+
+  //检测某个属性是否存在于对象中
+  console.log("name" in obj1)
+  console.log("xxx" in obj1)
+
+
+  let p1 = new Proxy(obj1,{
+
+    //拦截 in 操作
+    has(t,prop){
+      console.log("in 操作： ",prop)
+    },
+
+    //拦截 delete操作
+    deleteProperty(t,prop){
+      console.log("delete 了 属性： ",prop)
+    },
+
+    //拦截属性的读操作
+    get(t,p){
+      console.log("读取了属性： ",p)
+      if(p=="sex"){
+        console.log("禁止读取sex属性" )
+      }
+    },
+
+    // 当 写某个属性时 触发
+    set(t,p,v,r){
+      console.log(11111)
+      console.log(t)      // 原始对象 （被拦截的那个对象）
+      console.log(p)      // 属性名
+      console.log(v)      // 写属性的值
+      console.log(r)      // 拦截器对象
+      console.log(222222)
+    },
+  })
+
+  // delete 操作
+  delete p1.xxx
+
+  // in 操作
+  console.log("name" in p1)
+  console.log("xxx" in p1)
+
+
+
+</script>
+</body>
+</html>

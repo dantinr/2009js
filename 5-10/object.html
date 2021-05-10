@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let obj = {
+        name: "zhangsan",
+        age: 11,
+        sex: "Male"
+    }
+
+    let obj2 = {
+        name: "lisi",
+        age: 22,
+        sex: "Male",
+        email:"lisi@qq.com"
+    }
+
+    //定义一个生成器函数，作为迭代器接口
+    function * it()
+    {
+        for(k in this){
+            yield this[k]
+        }
+    }
+    // 将生成器函数 添加到 对象的原型中 Symbol.iterator属性
+    Object.prototype[Symbol.iterator] = it
+
+    for (v of obj2){
+        console.log(v)
+    }
+</script>
+</body>
+</html>

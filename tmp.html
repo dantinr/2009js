@@ -9,61 +9,26 @@
 
 <script>
 
-    function f1()
-    {
-        let a,b,c
-        setTimeout(function (){
-            a = 111
-        },3000)
-        setTimeout(function (){
-            b = 222
-        },2000)
-        setTimeout(function (){
-            c = 333
-        },1000)
+    // Number undefined null boolean  String  Symbol    Object
+    let arr = [11,22,33,44]
 
-        console.log(a,b,c)
+    // 获取 Array 原生的 迭代器接口
+    let it = arr[Symbol.iterator]()
+
+    console.log(it.next())
+    console.log(it.next())
+    console.log(it.next())
+    console.log(it.next())
+
+    console.log("=========================")
+    for(let v of it){
+        console.log(v)
     }
 
-    //f1()
-
-    async function f2()
-    {
-        return "abc"
+    console.log("=========================")
+    for(let v of arr){
+        console.log(v)
     }
-
-    let res = f2()
-    console.log(res.then(function(data){
-        console.log(data)
-    }))
-
-
-    // async function f2()
-    // {
-    //     let p1 = await new Promise(function (resolve, reject){
-    //         setTimeout(function (){
-    //             resolve( console.log("aaa") )
-    //         },3000)
-    //     })
-    //
-    //     let p2 = await new Promise(function (resolve, reject){
-    //         setTimeout(function (){
-    //             resolve( console.log("bbb") )
-    //         },2000)
-    //     })
-    //
-    //     let p3 = await new Promise(function (resolve, reject){
-    //         setTimeout(function (){
-    //             resolve( console.log("ccc") )
-    //         },1000)
-    //     })
-    //
-    //     console.log(p1,p2,p3)
-    // }
-    //
-    // f2()
-
-
 
 </script>
 </body>

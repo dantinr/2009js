@@ -9,75 +9,62 @@
 
 <script>
 
-    function ajax(url){
-        const xhr = new XMLHttpRequest()
-        xhr.onreadystatechange = function(){
-            if(xhr.readyState==4 && xhr.status==200){
-                console.log(xhr.responseText)
-            }
-        }
-        xhr.open('get',url)
-        xhr.send()
+    function f1()
+    {
+        let a,b,c
+        setTimeout(function (){
+            a = 111
+        },3000)
+        setTimeout(function (){
+            b = 222
+        },2000)
+        setTimeout(function (){
+            c = 333
+        },1000)
+
+        console.log(a,b,c)
     }
 
-    // let url = 'http://vue.api.comcto.com/api/password1.php'
-    // var pass1 = ajax(url)
-    // console.log("pass1: ",pass1)
+    //f1()
 
-    let pass = " "
-    new Promise(function(resolve,reject){
-        let url = 'http://vue.api.comcto.com/api/password1.php'
-        const xhr = new XMLHttpRequest()
-        xhr.onreadystatechange = function(){
-            if(xhr.readyState==4 && xhr.status==200){
-                resolve(xhr.responseText)
-            }
-        }
-        xhr.open('get',url)
-        xhr.send()
-    }).then(function(data){
-        pass += data
-        return new Promise(function(resolve,reject){
-            let url = 'http://vue.api.comcto.com/api/password2.php'
-            const xhr = new XMLHttpRequest()
-            xhr.onreadystatechange = function(){
-                if(xhr.readyState==4 && xhr.status==200){
-                    resolve(xhr.responseText)
-                }
-            }
-            xhr.open('get',url)
-            xhr.send()
-        })
-    }).then(function(data){
-        pass += data
-        return new Promise(function(resolve,reject){
-            let url = 'http://vue.api.comcto.com/api/password3.php'
-            const xhr = new XMLHttpRequest()
-            xhr.onreadystatechange = function(){
-                if(xhr.readyState==4 && xhr.status==200){
-                    resolve(xhr.responseText)
-                }
-            }
-            xhr.open('get',url)
-            xhr.send()
-        })
-    }).then(function(data){
-        pass += data
-        return new Promise(function(resolve,reject){
-            let url = 'http://vue.api.comcto.com/api/password4.php'
-            const xhr = new XMLHttpRequest()
-            xhr.onreadystatechange = function(){
-                if(xhr.readyState==4 && xhr.status==200){
-                    resolve(xhr.responseText)
-                }
-            }
-            xhr.open('get',url)
-            xhr.send()
-        })
-    }).then(function(data){
-        pass += data
-        console.log("pass: ",pass)
-    })
+    async function f2()
+    {
+        return "abc"
+    }
+
+    let res = f2()
+    console.log(res.then(function(data){
+        console.log(data)
+    }))
+
+
+    // async function f2()
+    // {
+    //     let p1 = await new Promise(function (resolve, reject){
+    //         setTimeout(function (){
+    //             resolve( console.log("aaa") )
+    //         },3000)
+    //     })
+    //
+    //     let p2 = await new Promise(function (resolve, reject){
+    //         setTimeout(function (){
+    //             resolve( console.log("bbb") )
+    //         },2000)
+    //     })
+    //
+    //     let p3 = await new Promise(function (resolve, reject){
+    //         setTimeout(function (){
+    //             resolve( console.log("ccc") )
+    //         },1000)
+    //     })
+    //
+    //     console.log(p1,p2,p3)
+    // }
+    //
+    // f2()
+
+
+
 </script>
 </body>
 </html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Async</title>
+</head>
+<body>
+<script>
+  //定义一个生成器函数
+  function * f1(){
+    yield "abc"
+    yield "xyz"
+  }
+
+  //调用生成器函数 得到迭代器对象
+  let res1 = f1()
+  console.log(res1)
+  // 调用 next() 方法 得到 yield的值
+  console.log(res1.next().value)
+  console.log(res1.next().value)
+
+</script>
+</body>
+</html>

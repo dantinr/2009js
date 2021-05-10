@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+  //定义一个 异步函数
+  async function f1()
+  {
+
+    // 获取第一个密码
+    let pass1 = await new Promise(function (resolve, reject){
+      //执行异步操作
+      var xhr = new XMLHttpRequest()
+      xhr.onreadystatechange = function (){
+        if(xhr.readyState==4 && xhr.status==200){
+          resolve(xhr.responseText)
+        }
+      }
+      // open
+      xhr.open("get","http://vue.api.comcto.com/api/password1.php")
+      // send
+      xhr.send()
+    })
+
+    // 获取第二个密码
+    let pass2 = await new Promise(function (resolve, reject){
+      //执行异步操作
+      var xhr = new XMLHttpRequest()
+      xhr.onreadystatechange = function (){
+        if(xhr.readyState==4 && xhr.status==200){
+          resolve(xhr.responseText)
+        }
+      }
+      // open
+      xhr.open("get","http://vue.api.comcto.com/api/password2.php")
+      // send
+      xhr.send()
+
+
+    })
+
+    // 获取第三个密码
+    let pass3 = await new Promise(function (resolve, reject) {
+      //执行异步操作
+      var xhr = new XMLHttpRequest()
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+          resolve(xhr.responseText)
+        }
+      }
+      // open
+      xhr.open("get", "http://vue.api.comcto.com/api/password3.php")
+      // send
+      xhr.send()
+    })
+
+    //最终的密码
+    return pass1+pass2+pass3+""
+
+  }
+
+  //调用异步函数
+  let res1 = f1()
+  console.log(res1)
+  res1.then(function (d){
+    console.log("收到的密码： ", d)
+  })
+
+  console.log(11111)
+  console.log(33333)
+
+
+
+</script>
+</body>
+</html>

@@ -9,27 +9,92 @@
 
 <script>
 
-    // Number undefined null boolean  String  Symbol    Object
-    let arr = [11,22,33,44]
+    // function * f0(){
+    //     yield "abc"
+    // }
+    //
+    // let res0 = f0()
+    // console.log(res0.next().value)
 
-    // 获取 Array 原生的 迭代器接口
-    let it = arr[Symbol.iterator]()
+    // function * f1(){
+    //     yield new Promise(function (resolve, reject){
+    //         var xhr = new XMLHttpRequest()
+    //         xhr.onreadystatechange = function (){
+    //             if(xhr.readyState==4 && xhr.status==200){
+    //                 //接收服务器响应数据
+    //                 resolve(xhr.responseText)
+    //             }
+    //         }
+    //         // open
+    //         xhr.open("get","http://vue.api.comcto.com/api/password1.php")
+    //         // send
+    //         xhr.send()
+    //     })
+    //
+    //     yield new Promise(function (resolve, reject){
+    //         var xhr = new XMLHttpRequest()
+    //         xhr.onreadystatechange = function (){
+    //             if(xhr.readyState==4 && xhr.status==200){
+    //                 //接收服务器响应数据
+    //                 resolve(xhr.responseText)
+    //             }
+    //         }
+    //         // open
+    //         xhr.open("get","http://vue.api.comcto.com/api/password2.php")
+    //         // send
+    //         xhr.send()
+    //     })
+    //
+    //
+    // }
+    //
+    // let res = f1()
+    // res.next().value.then(function(d){
+    //     console.log(d)
+    // })
+    // res.next().value.then(function(d){
+    //     console.log(d)
+    // })
 
-    console.log(it.next())
-    console.log(it.next())
-    console.log(it.next())
-    console.log(it.next())
+    console.log("+++++++++++++++++++++++++++++++")
 
-    console.log("=========================")
-    for(let v of it){
-        console.log(v)
+    async function f2(){
+        let p1 = await new Promise(function (resolve, reject){
+            var xhr = new XMLHttpRequest()
+            xhr.onreadystatechange = function (){
+                if(xhr.readyState==4 && xhr.status==200){
+                    //接收服务器响应数据
+                    resolve(xhr.responseText)
+                }
+            }
+            // open
+            xhr.open("get","http://vue.api.comcto.com/api/password1.php")
+            // send
+            xhr.send()
+        })
+
+        let p2 = await new Promise(function (resolve, reject){
+            var xhr = new XMLHttpRequest()
+            xhr.onreadystatechange = function (){
+                if(xhr.readyState==4 && xhr.status==200){
+                    //接收服务器响应数据
+                    resolve(xhr.responseText)
+                }
+            }
+            // open
+            xhr.open("get","http://vue.api.comcto.com/api/password2.php")
+            // send
+            xhr.send()
+        })
+
+        return {p1,p2}
     }
 
-    console.log("=========================")
-    for(let v of arr){
-        console.log(v)
-    }
 
+    let res2 = f2()
+    console.log(res2.then(function(d){
+        console.log(d)
+    }))
 </script>
 </body>
 </html>

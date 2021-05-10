@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="/jquery-3.5.1.js"></script>
+<script>
+
+  var pass = " "
+  //请求第一个密码
+  $.ajax({
+    url: "http://vue.api.comcto.com/api/password1.php",
+    method: 'get',
+    async: false,
+    success:function(res){
+      console.log("第1个密码：" ,res)
+        // 请求第二个密码
+        $.ajax({
+            url: "http://vue.api.comcto.com/api/password2.php",
+            method: 'get',
+            async: false,
+            success:function(res){
+                console.log("第2个密码：" ,res)
+                //请求第三个密码
+                $.ajax({
+                    url: "http://vue.api.comcto.com/api/password3.php",
+                    method: 'get',
+                    async: false,
+                    success:function(res){
+                        console.log("第3个密码：" ,res)
+                        //请求第四个密码
+                        $.ajax({
+                            url: "http://vue.api.comcto.com/api/password4.php",
+                            method: 'get',
+                            async: false,
+                            success:function(res){
+                                console.log("第4个密码：" ,res)
+                                pass += res
+                            }})}})}})}})
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

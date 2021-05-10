@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Promise</title>
+</head>
+<body>
+<script>
+
+  const res = new Promise(function(resolve, reject){
+      let pass = ""
+      // 实例化 XHR
+      var xhr = new XMLHttpRequest()
+      //监听
+      xhr.onreadystatechange = function (){
+        if(xhr.readyState==4 && xhr.status==200){
+          //接收服务器响应数据
+          let res_data = xhr.responseText
+          console.log("第一位密码： ",res_data)
+          resolve(pass+res_data)
+        }
+      }
+      // open
+      xhr.open("get","http://vue.api.comcto.com/api/password1.php")
+      // send
+      xhr.send()
+
+  }).then(function(data){
+    return new Promise(function(resolve,reject){
+      //请求第二个密码
+      var xhr = new XMLHttpRequest()
+      //监听
+      xhr.onreadystatechange = function (){
+        if(xhr.readyState==4 && xhr.status==200){
+          //接收服务器响应数据
+          var res_data = xhr.responseText
+          console.log("第二位密码： ",res_data)
+          resolve(data + res_data)
+        }
+      }
+      // open
+      xhr.open("get","http://vue.api.comcto.com/api/password2.php")
+      // send
+      xhr.send()
+    })
+
+  }).then(function(data){
+    return new Promise(function(resolve, reject){
+      //请求第三个密码
+      var xhr = new XMLHttpRequest()
+      //监听
+      xhr.onreadystatechange = function (){
+        if(xhr.readyState==4 && xhr.status==200){
+          //接收服务器响应数据
+          let res_data = xhr.responseText
+          console.log("第三位密码： ",res_data)
+          resolve(data + res_data)
+        }
+      }
+      // open
+      xhr.open("get","http://vue.api.comcto.com/api/password3.php")
+      // send
+      xhr.send()
+    })
+  }).then(function(data){
+    return new Promise(function(resolve, reject){
+      //请求第四个密码
+      var xhr = new XMLHttpRequest()
+      //监听
+      xhr.onreadystatechange = function (){
+        if(xhr.readyState==4 && xhr.status==200){
+          //接收服务器响应数据
+          let res_data = xhr.responseText
+          console.log("第三位密码： ",res_data)
+          resolve(data + res_data)
+        }
+      }
+      // open
+      xhr.open("get","http://vue.api.comcto.com/api/password4.php")
+      // send
+      xhr.send()
+    })
+  }).then(function(data){
+      console.log("最终密码： ",data)
+  })
+
+
+
+</script>
+</body>
+</html>

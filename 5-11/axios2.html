@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <div id="app">
+      <ul>
+        <li v-for="item in list">{{item.id}} - {{item.name}} - {{item.time}}</li>
+      </ul>
+  </div>
+
+  <script src="/js/vue.2.6.12.min.js"></script>
+  <script src="/js/axios.min.js"></script>
+  <script>
+    new Vue({
+      el: "#app",
+      data:{
+        list:[],
+      },
+      //创建阶段（DOM还没真正加载）
+      created(){
+        console.log("this",this)
+        let self = this
+        let api_url = "http://vue.api.comcto.com/api/books.php"
+        axios.get(api_url).then(function(d){
+          console.log("Promise对象: ",d)
+          //服务器返回的数据 在  d.data 字段中
+          console.log(d.data)
+          self.list = d.data
+        })
+      }
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="/js/axios.min.js"></script>
+<script>
+  let api_url = "http://vue.api.comcto.com/api/books.php"
+  axios.get(api_url).then(function(d){
+    console.log("Promise对象: ",d)
+    //服务器返回的数据 在  d.data 字段中
+    console.log(d.data)
+  })
+</script>
+</body>
+</html>

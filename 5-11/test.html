@@ -3,18 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-  <link rel="stylesheet" href="">
-  <script>
-      window.onload = function(){
-        document.getElementById("p1").addEventListener("click",function(){
-          alert("1111")
-        })
-      }
-
-  </script>
 </head>
 <body>
-  <p id="p1">Hello world</p>
-  <div></div>
+    <a href="https://www.baidu.com">百度</a>
+
+    <script>
+        // 1 获取节点对象
+        var oA =  document.querySelector("a")
+        console.log(oA)
+        // 2 绑定事件
+        oA.addEventListener("click",function(ev){
+            ev.stopPropagation()        //阻止事件冒泡
+            console.log(ev)
+            alert(11111)
+            ev.preventDefault()     //阻止默认行为
+        })
+    </script>
 </body>
 </html>

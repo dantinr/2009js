@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单输入绑定</title>
+</head>
+<body>
+  <div id="app">
+    用户名：<input type="text" v-model="username">
+    <p>{{username}}</p>
+    <button @click="showName">显示用户名</button>
+  </div>
+
+  <script src="/js/vue.2.6.12.min.js"></script>
+  <script>
+    new Vue({
+      el: "#app",
+      data:{
+        username: "zhangsan"
+      },
+      methods:{
+        showName(){
+          console.log(this.username)
+        }
+      },
+    })
+  </script>
+</body>
+</html>

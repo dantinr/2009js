@@ -8,93 +8,30 @@
 
 
 <script>
-
-    // function * f0(){
-    //     yield "abc"
-    // }
-    //
-    // let res0 = f0()
-    // console.log(res0.next().value)
-
-    // function * f1(){
-    //     yield new Promise(function (resolve, reject){
-    //         var xhr = new XMLHttpRequest()
-    //         xhr.onreadystatechange = function (){
-    //             if(xhr.readyState==4 && xhr.status==200){
-    //                 //接收服务器响应数据
-    //                 resolve(xhr.responseText)
-    //             }
-    //         }
-    //         // open
-    //         xhr.open("get","http://vue.api.comcto.com/api/password1.php")
-    //         // send
-    //         xhr.send()
-    //     })
-    //
-    //     yield new Promise(function (resolve, reject){
-    //         var xhr = new XMLHttpRequest()
-    //         xhr.onreadystatechange = function (){
-    //             if(xhr.readyState==4 && xhr.status==200){
-    //                 //接收服务器响应数据
-    //                 resolve(xhr.responseText)
-    //             }
-    //         }
-    //         // open
-    //         xhr.open("get","http://vue.api.comcto.com/api/password2.php")
-    //         // send
-    //         xhr.send()
-    //     })
-    //
-    //
-    // }
-    //
-    // let res = f1()
-    // res.next().value.then(function(d){
-    //     console.log(d)
-    // })
-    // res.next().value.then(function(d){
-    //     console.log(d)
-    // })
-
-    console.log("+++++++++++++++++++++++++++++++")
-
-    async function f2(){
-        let p1 = await new Promise(function (resolve, reject){
-            var xhr = new XMLHttpRequest()
-            xhr.onreadystatechange = function (){
-                if(xhr.readyState==4 && xhr.status==200){
-                    //接收服务器响应数据
-                    resolve(xhr.responseText)
-                }
-            }
-            // open
-            xhr.open("get","http://vue.api.comcto.com/api/password1.php")
-            // send
-            xhr.send()
+    async function f1()
+    {
+        let str1 = await new Promise(function (resolve, reject){
+            setTimeout(function (){
+                resolve("Hello")
+            },2000)
         })
 
-        let p2 = await new Promise(function (resolve, reject){
-            var xhr = new XMLHttpRequest()
-            xhr.onreadystatechange = function (){
-                if(xhr.readyState==4 && xhr.status==200){
-                    //接收服务器响应数据
-                    resolve(xhr.responseText)
-                }
-            }
-            // open
-            xhr.open("get","http://vue.api.comcto.com/api/password2.php")
-            // send
-            xhr.send()
+        let str2 = await new Promise(function (resolve, reject){
+            setTimeout(function (){
+                resolve(" World")
+            },2000)
         })
 
-        return {p1,p2}
+        return str1 + str2
     }
 
-
-    let res2 = f2()
-    console.log(res2.then(function(d){
+    let res1 = f1()
+    console.log(res1)
+    res1.then(function(d){
         console.log(d)
-    }))
+    })
+
+
 </script>
 </body>
 </html>

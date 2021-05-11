@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style type="text/css">
+    .grid {
+      margin: auto;
+      width: 530px;
+      text-align: center;
+    }
+    .grid table {
+      border-top: 1px solid #C2D89A;
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .grid th,td {
+      padding: 10;
+      border: 1px dashed #F3DCAB;
+      height: 35px;
+      line-height: 35px;
+    }
+    .grid th {
+      background-color: #F3DCAB;
+    }
+    .grid .book {
+      padding-bottom: 10px;
+      padding-top: 5px;
+      background-color: #F3DCAB;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div class="grid">
+      <div>
+        <h1>图书管理</h1>
+        <button @click="del(2)">删除</button>
+        <div class="book">
+          <div>
+            <label for="id">
+              编号：
+            </label>
+            <input type="text" id="id" v-model="id">
+            <label for="name">
+              名称：
+            </label>
+            <input type="text"  id="name" v-model="name">
+            <button @click="add" >提交</button>
+          </div>
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>编号</th>
+            <th>名称</th>
+            <th>时间</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr :key='item.id' v-for='(item,index) in books'>
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.time}}</td>
+            <td>
+              <a href="">修改</a>
+              <span>|</span>
+              <a href="" @click.prevent="del(index)">删除</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript" src="/js/vue.js"></script>
+  <script src="/js/axios.min.js"></script>
+  <script type="text/javascript">
+    /*
+      图书管理-添加图书
+    */
+    //接口地址
+    const api_url = "http://vue.api.comcto.com/api/books.php"
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        id: null,
+        name:null,
+        books: []
+      },
+      methods: {
+        //添加
+        add(){
+          //获取input中的 id 和 name
+          let now = new Date()
+          let y = now.getFullYear()   //获取年
+          let m = now.getMonth()
+          let d = now.getDate()
+          let ymd = `${y}-${m+1}-${d}`
+          let new_book = {id:this.id,name:this.name,time:ymd}
+          this.books.push(new_book)
+          console.log("添加")
+        },
+
+        del(index){
+          console.log("删除")
+          this.books.splice(index,1)
+          //this.books.shift()
+          //this.books.pop()
+        }
+      },
+
+      created(){
+        let self = this
+        axios.get(api_url).then(function(response){
+          self.books = response.data
+        })
+      }
+    });
+  </script>
+</body>
+</html>

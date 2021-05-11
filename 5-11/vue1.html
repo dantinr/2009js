@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>
+</head>
+<body>
+    <div id="app">
+          <span v-bind:title="hello">
+            鼠标悬停几秒钟查看此处动态绑定的提示信息！
+            </span>
+    </div>
+
+    <script src="/js/vue.js"></script>
+    <script>
+
+        var app = new Vue(
+            {
+                el: '#app',             // 挂载点
+                data: {                 // 数据
+                    message: 'Hello VueXXXXX!',
+                    hello: "Hello World"
+                }
+            }
+        )
+
+    </script>
+</body>
+</html>

@@ -6,6 +6,26 @@
 </head>
 <body>
   <div id="app">
+
+      <form action="" name="" method="" enctype="" v-for="">
+
+      </form>
+      <table border="1">
+          <thead>
+            <tr>
+                <th>姓名</th><th>年龄</th><th>性别</th><th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="item in list">
+                <td>{{item.name}}</td>
+                <td>{{item.age}}</td>
+                <td>{{item.sex}}</td>
+                <td><a href="">添加</a> | <a href="">删除</a></td>
+            </tr>
+          </tbody>
+      </table>
+
     <ul>
       <li v-for="item in list">{{item.name}} - {{item.age}} - {{item.sex}}</li>
     </ul>

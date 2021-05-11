@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+  <button id="btn1">CLICK</button>
+
+  <script>
+
+
+
+
+    var btn2 = document.getElementById("btn1")
+    btn2.addEventListener("click",function(){
+      alert(111111)
+    })
+
+
+    var btn0 = document.getElementsByTagName("button")
+    console.log(btn0)
+    console.log(typeof btn0)
+    //绑定click事件
+    btn0[0].onclick = function(){
+      alert(22222)
+    }
+
+
+    var btn1 = document.querySelector("button")
+    console.log(btn1)
+    console.log(typeof btn1)
+    btn1.onclick = function(){
+      alert(111111)
+    }
+  </script>
+</body>
+</html>

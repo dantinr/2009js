@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <div id="app">
+    <button v-on:click="hello1">AAA</button>
+    <button @click="hello2">BBB</button>
+  </div>
+
+  <script src="/js/vue.2.6.12.min.js"></script>
+  <script>
+
+    //实例化Vue
+    new Vue({
+      el: "#app",
+      data:{},
+      methods:{
+        //hello: function(){alert(11111)}
+        hello1(){
+          alert(1111)
+        },
+        hello2(){
+          alert(2222)
+        }
+      },
+    })
+
+  </script>
+</body>
+</html>

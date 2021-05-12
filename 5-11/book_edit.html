@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>图书列表</title>
+  <style>
+    .grid {
+      margin: auto;
+      width: 530px;
+      text-align: center;
+    }
+    .grid table {
+      border-top: 1px solid #C2D89A;
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .grid th,td {
+      padding: 10;
+      border: 1px dashed #F3DCAB;
+      height: 35px;
+      line-height: 35px;
+    }
+    .grid th {
+      background-color: #F3DCAB;
+    }
+    .grid .book {
+      padding-bottom: 10px;
+      padding-top: 5px;
+      background-color: #F3DCAB;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div class="grid">
+      <div>
+        <h1>图书管理</h1>
+        <div class="book">
+          <div>
+            <label for="id">
+              编号：
+            </label>
+            <input type="text" id="id" v-model="bookid">
+            <label for="name">
+              名称：
+            </label>
+            <input type="text" id="name" v-model="bookname">
+            <button v-on:click="update" v-model="list_index">提交</button>
+          </div>
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>编号</th>
+            <th>名称</th>
+            <th>时间</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(item,k) in list" :key="item.id">
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.time}}</td>
+            <td>
+              <a href="" v-on:click.prevent="edit(k)">修改</a>
+              <span>|</span>
+              <a href="" v-on:click.prevent="del(k)">删除</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <script src="/js/vue.2.6.12.min.js"></script>
+  <script src="/js/axios.min.js"></script>
+  <script>
+
+    new Vue({
+      el: "#app",
+      data:{
+        bookid:null,
+        bookname:null,
+        list_index:null,
+        list:[]       // 数据列表
+      },
+      methods:{
+        del(i){
+          this.list.splice(i,1)
+        },
+        // 编辑
+        edit(k){
+          this.bookid = this.list[k].id
+          this.bookname = this.list[k].name
+          this.list_index = k
+          console.log(this.list[k])
+          console.log("修改")
+        },
+        //更新
+        update(){
+          let i = this.list_index
+          console.log(this.list_index)
+          console.log(this.bookid)
+          console.log(this.bookname)
+          this.list[i].name = this.bookname
+        }
+      },
+      //在创建阶段请求接口
+      created(){
+        let self = this
+        let api_url = "http://vue.api.comcto.com/api/books.php"   //接口地址
+        axios.get(api_url).then(function(res){
+          //获取服务器响应的数据  res.data
+          self.list = res.data
+        })
+      }
+    })
+
+  </script>
+
+</body>
+</html>

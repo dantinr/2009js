@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <div id="app">
+    用户名1：<input type="text" value="zhangsan111"><br>
+    用户名2：<input type="text" v-model="username"><br>
+    {{username}}
+
+    <br><button v-on:click="getName">获取用户名2</button>
+  </div>
+  <script src="/js/vue.2.6.12.min.js"></script>
+  <script>
+
+    new Vue({
+      //挂载点
+      el: "#app",
+      //数据
+      data:{
+        username: "lisi",
+      },
+      //方法
+      methods:{
+        getName(){
+          //获取用户名2
+          console.log(this.username)
+        }
+      },
+      //生命周期 钩子函数
+      created(){
+        
+      }
+    })
+
+  </script>
+</body>
+</html>

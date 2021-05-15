@@ -12,7 +12,11 @@
     手机号：<input type="text" v-model.lazy="mobile"> <br>
     密码：<input type="password" v-model="pass1"> <br>
     确认密码：<input type="password" v-model="pass2"> <br>
+<<<<<<< HEAD
       <input type="submit" value="注册" :disabled="regstatus">
+=======
+      <input type="submit" v-on:click="regist" value="注册" :disabled="regstatus">
+>>>>>>> 注册
   </div>
   <script src="/js/axios.min.js"></script>
   <script src="/js/vue.2.6.12.min.js"></script>
@@ -27,9 +31,24 @@
         email:null,
         pass1:null,
         pass2:null,
-        regstatus:true,
+        regstatus:true,         // true为禁用状态
       },
-      methods:{},
+      methods:{
+          regist(){
+              //获取input中的 用户输入
+              let user_info = {
+                  name: this.username,
+                  email: this.useremail,
+                  mobile : this.mobile,
+                  pass: this.pass2
+              }
+              //请求注册接口
+              let api = "http://localhost:3001/user/regist"
+              axios.post(api,user_info).then(function(res){
+                  console.log("服务器返回的数据： ",res.data)
+              })
+          }
+      },
       computed:{},
       //侦听器
       watch:{
@@ -75,7 +94,6 @@
                 }
             })
         },
-
         //验证两次输入的密码是否一致 两次密码一致，注册改为可用状态
         pass2(v){
             if( v === this.pass1 ){

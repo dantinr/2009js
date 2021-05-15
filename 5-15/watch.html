@@ -50,20 +50,30 @@
             })
         },
         useremail(v){
-            let api = "http://localhost:3000/check/email?email=" + v
-          axios("验证Email是否存在接口").then(function(res){
-            if(res.data.error == 1){  // 1不可注册（已被占用）
-              alert()
-            }else{      //可以注册
+            let api = "http://localhost:3001/check/email?email=" + v
+            console.log(api)
+            axios(api).then(function(res){
+            //根据错误码判断
+            if(res.data.errno>0)
+            {
+                alert("请换一个Email")
+            }else{
 
             }
           })
-
         },
-
         //验证手机号
-        mobile(){
-
+        mobile(v){
+            let api = "http://localhost:3001/check/mobile?mobile=" + v
+            axios(api).then(function(res){
+                //根据错误码判断
+                if(res.data.errno>0)
+                {
+                    alert("请换一个手机号")
+                }else{
+                    console.log("手机号可用")
+                }
+            })
         }
       },
 

@@ -14,8 +14,9 @@
     确认密码：<input type="text" v-model.lazy="pass2"> <br>
       <input type="submit" value="注册" :disabled="regstatus">
   </div>
-
+  <script src="/js/axios.min.js"></script>
   <script src="/js/vue.2.6.12.min.js"></script>
+
   <script>
     new Vue({
       el: "#app",
@@ -33,14 +34,20 @@
       //侦听器
       watch:{
         username(v){
-          let api = "http://localhost:3000/check/username?uname=" + v
-          axios.get(api).then(function(res){
-            if(res.data.error == 1){  // 1不可注册（已被占用）
-              alert()
-            }else{      //可以注册
+            console.log(v)
+            //请求后台接口，检查用户名是否已被占用
+            let api = "http://localhost:3001/check/username?name="+v
+            console.log(api)
+            axios.get(api).then(function(res){
+                console.log("服务器返回的数据: ",res.data)
+                //根据错误码判断
+                if(res.data.errno>0)
+                {
+                    alert("请换一个用户名")
+                }else{
 
-            }
-          })
+                }
+            })
         },
         useremail(v){
             let api = "http://localhost:3000/check/email?email=" + v

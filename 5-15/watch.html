@@ -10,8 +10,8 @@
     用户名：<input type="text" v-model.lazy="username"> <br>
     Email：<input type="text" v-model.lazy="useremail"> <br>
     手机号：<input type="text" v-model.lazy="mobile"> <br>
-    密码：<input type="text" v-model.lazy="pass1"> <br>
-    确认密码：<input type="text" v-model.lazy="pass2"> <br>
+    密码：<input type="password" v-model="pass1"> <br>
+    确认密码：<input type="password" v-model="pass2"> <br>
       <input type="submit" value="注册" :disabled="regstatus">
   </div>
   <script src="/js/axios.min.js"></script>
@@ -74,6 +74,13 @@
                     console.log("手机号可用")
                 }
             })
+        },
+
+        //验证两次输入的密码是否一致 两次密码一致，注册改为可用状态
+        pass2(v){
+            if( v === this.pass1 ){
+                this.regstatus = false
+            }
         }
       },
 

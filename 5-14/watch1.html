@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>侦听器</title>
+</head>
+<body>
+  <div id="app">
+      <h2>用户注册</h2>
+    用户名：<input type="text" v-model.lazy="username"> <br>
+    Email：<input type="text" v-model.lazy="useremail"> <br>
+    手机号：<input type="text" v-model.lazy="mobile"> <br>
+    密码：<input type="text" v-model.lazy="pass1"> <br>
+    确认密码：<input type="text" v-model.lazy="pass2"> <br>
+      <input type="submit" value="注册" :disabled="regstatus">
+  </div>
+
+  <script src="/js/vue.2.6.12.min.js"></script>
+  <script>
+    new Vue({
+      el: "#app",
+      data:{
+        username:null,
+        useremail:null,
+        mobile:null,
+        email:null,
+        pass1:null,
+        pass2:null,
+        regstatus:true,
+      },
+      methods:{},
+      computed:{},
+      //侦听器
+      watch:{
+        username(v){
+          let api = "http://localhost:3000/check/username?uname=" + v
+          axios.get(api).then(function(res){
+            if(res.data.error == 1){  // 1不可注册（已被占用）
+              alert()
+            }else{      //可以注册
+
+            }
+          })
+        },
+        useremail(v){
+            let api = "http://localhost:3000/check/email?email=" + v
+          axios("验证Email是否存在接口").then(function(res){
+            if(res.data.error == 1){  // 1不可注册（已被占用）
+              alert()
+            }else{      //可以注册
+
+            }
+          })
+
+        },
+
+        //验证手机号
+        mobile(){
+
+        }
+      },
+
+    })
+  </script>
+</body>
+</html>

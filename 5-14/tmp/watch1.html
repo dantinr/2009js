@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>侦听器</title>
+</head>
+<body>
+  <div id="app">
+    用户名：<input type="text" v-model.lazy="username" placeholder="请输入用户名"> <br>
+  </div>
+  <script src="/js/vue.2.6.12.min.js"></script>
+  <script>
+    new Vue({
+      el: "#app",
+      data:{
+        username:""
+      },
+      methods:{
+
+      },
+      watch:{
+        username(v){
+          console.log(v)
+        }
+      }
+    })
+  </script>
+</body>
+</html>

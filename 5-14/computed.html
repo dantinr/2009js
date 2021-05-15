@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>计算属性</title>
+</head>
+<body>
+  <div id="app">
+    {{msg}} <br>
+    {{ str }}
+  </div>
+  <script src="/js/vue.2.6.12.min.js"></script>
+  <script>
+    new Vue({
+      el: "#app",     //挂载点
+      data:{
+        msg:"Hello world"
+      },        // 数据
+      methods:{},     //方法
+      created(){},      //生命周期钩子函数
+      //计算属性
+      computed:{
+        str(){
+          return this.msg.toUpperCase().split("").join("-")
+        }
+      }
+    })
+  </script>
+</body>
+</html>

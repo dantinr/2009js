@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <hello-world></hello-world>
+    </div>
+    <script src="/js/vue.js"></script>
+    <script>
+
+        let HelloWorld = {
+            data(){
+                return {
+                    name:"wangwu"
+                }
+            },
+            methods:{
+                hello(){
+                    alert(this.name)
+                }
+            },
+            template: `<div><h2>Hello world {{name}}</h2>
+              <button v-on:click="hello">click</button>
+            </div>`
+        }
+
+        new Vue({
+            el:"#app",
+            components:{
+                "hello-world":HelloWorld
+            }
+        })
+
+    </script>
+</body>
+</html>

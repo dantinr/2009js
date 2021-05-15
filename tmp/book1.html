@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>图书列表</title>
+  <style>
+    .grid {
+      margin: auto;
+      width: 530px;
+      text-align: center;
+    }
+    .grid table {
+      border-top: 1px solid #C2D89A;
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .grid th,td {
+      padding: 10;
+      border: 1px dashed #F3DCAB;
+      height: 35px;
+      line-height: 35px;
+    }
+    .grid th {
+      background-color: #F3DCAB;
+    }
+    .grid .book {
+      padding-bottom: 10px;
+      padding-top: 5px;
+      background-color: #F3DCAB;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div class="grid">
+      <div>
+        <h1>图书管理</h1>
+        <div class="book">
+          <div>
+            <label for="id">
+              编号：
+            </label>
+            <input type="text" id="id" v-model="bookid" v-bind:disabled="status">
+            <label for="name">
+              名称：
+            </label>
+            <input type="text" id="name" v-model="bookname">
+            <button v-on:click="add">提交</button>
+          </div>
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>编号</th>
+            <th>名称</th>
+            <th>时间</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(item,k) in list" :key="item.id">
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.time}}</td>
+            <td>
+              <a href="" v-on:click.prevent="edit(k)">修改</a>
+              <span>|</span>
+              <a href="" v-on:click.prevent="del(k)">删除</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <script src="/js/vue.2.6.12.min.js"></script>
+  <script src="/js/axios.min.js"></script>
+  <script>
+
+    new Vue({
+      el: "#app",
+      data:{
+        status:false,      // disabled 默认为可用状态
+        bookid:null,
+        bookname:null,
+        list:[]       // 数据列表
+      },
+      methods:{
+        del(i){
+          this.list.splice(i,1)
+        },
+        //提交 click事件
+        add(){
+
+
+          //获取当前时间
+          let now = new Date()
+          console.log(now)
+          // 年-月-日
+          let year = now.getFullYear()    //年
+          let month = now.getMonth() + 1     // 月
+          let date = now.getDate()         // 日
+
+          let ymd = `${year}-${month}-${date}`
+          console.log(year,month,date)
+
+
+          //判断是修改还是添加？
+          console.log("status: ",this.status)
+          if(this.status){      //修改
+            let id = this.bookid
+            let name = this.bookname
+            console.log("要修改的内容：",id,name)
+
+            //遍历 list 找到 id = this.bookid
+            this.list.forEach(function(v,k){
+                if(v.id===id){    //找到了要更新的元素
+                  console.log("找到了要更新的数据：",v)
+                  v.name = name
+                }
+            })
+
+            //清空 input
+            this.bookid = null
+            this.bookname = null
+            this.status = false
+
+
+          }else{
+            //获取 input中的值
+            let book_info = {
+              id:this.bookid,
+              name:this.bookname,
+              time:ymd
+            }
+            this.list.push(book_info)
+          }
+          this.bookid = null
+          this.bookname = null
+
+        },
+        //修改
+        edit(i){
+          console.log("要修改的数据索引为",i)
+          console.log("要修改的数据为： ",this.list[i])
+          //将数据 填充到 input中
+          this.bookid = this.list[i].id
+          this.bookname = this.list[i].name
+
+          //禁止修改 bookid
+          this.status = true
+
+
+        }
+
+      },
+      //在创建阶段请求接口
+      created(){
+        let self = this
+        let api_url = "http://vue.api.comcto.com/api/books.php"   //接口地址
+        axios.get(api_url).then(function(res){
+          //获取服务器响应的数据  res.data
+          self.list = res.data
+        })
+      }
+    })
+
+  </script>
+
+</body>
+</html>

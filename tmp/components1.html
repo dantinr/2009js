@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <h2>AAAA</h2>
+        <hello-world></hello-world>
+    </div>
+    <script src="/js/vue.js"></script>
+    <script>
+
+        Vue.component("hello-world",{
+            data(){
+                return {
+                    name: "zhangsan"
+                }
+            },
+            methods:{
+                show(){
+                    alert( this.name)
+                },
+                getList(){
+                    console.log("获取数据")
+                    axios.get("http://vue.api.comcto.com/api/books.php").then(function(res){
+                        console.log(res.data)
+                    })
+                }
+            },
+            template:` <div> <h2>今天是周六{{name}}</h2>
+            <button v-on:click="show">alert</button>
+            <button v-on:click="getList"> 请求接口</button>
+            </div> `
+        })
+
+        new Vue({
+            data:{
+                name:"lisi"
+            },
+            methods:{
+                show(){
+                    alert("1111")
+                }
+            },
+            el: "#app"
+        })
+
+    </script>
+</body>
+</html>

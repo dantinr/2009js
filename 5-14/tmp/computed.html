@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>计算属性</title>
+</head>
+<body>
+<div id="app">
+  <input type="text" v-model="msg"> <br>
+  {{ msg1 }}
+
+  </div>
+  <script src="/js/vue.2.6.12.min.js"></script>
+  <script>
+    new Vue({
+      el: "#app",
+      data:{
+        msg: "helloworld",
+      },
+      methods:{},
+      computed:{
+        msg1(){
+          return this.msg.toUpperCase().split("").join("-")
+        }
+      },
+    })
+  </script>
+</body>
+</html>

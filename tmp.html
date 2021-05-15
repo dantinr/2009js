@@ -5,33 +5,23 @@
     <title>Title</title>
 </head>
 <body>
-
-
-<script>
-    async function f1()
-    {
-        let str1 = await new Promise(function (resolve, reject){
-            setTimeout(function (){
-                resolve("Hello")
-            },2000)
+    <div id="app">
+        用户名：<input type="text" v-model.lazy="username">
+    </div>
+    <script src="/js/vue.2.6.12.min.js"></script>
+    <script>
+        new Vue({
+            el: "#app",
+            data:{
+                username:null
+            },
+            watch:{
+                username(v){
+                    console.log(v)
+                }
+            }
         })
 
-        let str2 = await new Promise(function (resolve, reject){
-            setTimeout(function (){
-                resolve(" World")
-            },2000)
-        })
-
-        return str1 + str2
-    }
-
-    let res1 = f1()
-    console.log(res1)
-    res1.then(function(d){
-        console.log(d)
-    })
-
-
-</script>
+    </script>
 </body>
 </html>

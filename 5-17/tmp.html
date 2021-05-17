@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件</title>
+</head>
+<body>
+
+  <div id="app">
+      <div>
+        <goods-list v-bind:xxx="list"></goods-list>
+      </div>
+  </div>
+
+  <script src="/js/vue.js"></script>
+  <script src="/js/axios.min.js"></script>
+  <script>
+
+
+    Vue.component("goods-list",{
+      props:['xxx'],
+      template:`<ul>
+          <li v-for="item in xxx">
+            {{item.goods_id}} - {{item.goods_name}} - {{item.shop_price}}
+          </li>
+        </ul>`
+    })
+
+    new Vue({
+      el: "#app",
+      data:{
+        list:[]
+      },
+      created(){
+        let api = "http://localhost:3001/goods/list"
+        let self = this
+        axios.get(api).then(function(res){
+          console.log(res.data)
+          self.list = res.data
+        })
+      }
+    })
+  </script>
+</body>
+</html>

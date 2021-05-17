@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+
+    .color1 {
+      color: #DC4C40;
+    }
+
+    .size1 {
+      font-size: 35px
+    }
+
+  </style>
+</head>
+<body>
+
+    <div id="app">
+        <p v-bind:class="{color1:c1,size1:s1}"> Hello world 3333 </p>
+        <p v-bind:class="stylex"> Hello world 4444 </p>
+
+        <button v-on:click="changeColor"> 改变颜色 </button>
+        <button v-on:click="changeSize"> 改变字号 </button>
+    </div>
+
+
+  <script src="/js/vue.js"></script>
+  <script>
+      new Vue({
+          el: "#app",               // 挂载点
+          data:{
+              c1: false,
+              s1: true
+          },              // 数据
+          methods:{
+              changeColor(){
+                  this.c1 = !this.c1
+              },
+              changeSize(){
+                  this.s1 = !this.s1
+              }
+          },           //方法
+          computed:{
+              stylex(){
+                  return {
+                      color1: this.c1,
+                      size1: this.s1
+                  }
+              }
+          },          //计算属性
+          watch:{},             //侦听器
+      })
+  </script>
+</body>
+</html>

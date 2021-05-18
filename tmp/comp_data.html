@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>父子组件传值</title>
+    <style>
+      .p1{
+
+      }
+    </style>
+</head>
+<body>
+  <div id="app">
+    <p>{{ num }}</p>
+    <change-num @add-num="addNum"></change-num>
+  </div>
+  <script src="/js/vue.js"></script>
+  <script>
+
+    let ChangeNum = {
+      data(){
+        return {
+          c_num: 0
+        }
+      },
+      template:`
+        <div>
+          <input type="text" v-model="c_num">
+          <button v-on:click="$emit('add-num',c_num)">+2</button>
+        </div>
+      `
+    }
+    new Vue({
+      el:"#app",
+      data:{
+        num: 0
+      },
+      methods:{
+        addNum(v){
+          this.num += parseInt(v)
+        }
+      },
+      components:{
+        "change-num" : ChangeNum
+      }
+    })
+  </script>
+</body>
+</html>

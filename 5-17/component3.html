@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件</title>
+</head>
+<body>
+
+  <div id="app">
+    <user-list></user-list>
+  </div>
+
+  <script src="/js/vue.js"></script>
+  <script src="/js/axios.min.js"></script>
+  <script>
+
+    let UserList = {
+        data(){
+          return {
+              list:[]
+          }
+        },
+        created(){
+            let self = this
+            let api = "http://localhost:3001/goods/list"
+            axios.get(api).then(function(res){
+                self.list = res.data
+            })
+        },
+      template: `<ul>
+      <li v-for="item in list" :key="item.id">
+        <span>{{item.goods_id}}</span>
+        <span>{{item.goods_name}}</span>
+        <span>{{item.shop_price}}</span>
+      </li>
+    </ul>`
+    }
+
+    new Vue({
+      el: "#app",
+      components:{
+        "user-list" : UserList
+      }
+    })
+  </script>
+</body>
+</html>

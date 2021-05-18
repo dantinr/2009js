@@ -97,8 +97,8 @@
   <div class="container">
     <div class="cart">
       <cart-head></cart-head>
-      <cart-list v-bind:xxx="list" @add-cart="addCart"></cart-list>
-      <cart-bottom v-bind:goods="list"></cart-bottom>
+      <cart-list v-bind:xxx="list" v-on:add-cart="addCart"></cart-list>
+      <cart-bottom :list="list"></cart-bottom>
     </div>
   </div>
 </div>
@@ -134,15 +134,12 @@
       </div>`
   }
 
-  //购物车底部
   let CartBottom = {
-    props: ['goods'],
+    props: ['list'],
     computed:{
-      total(){    //商品总价
-        console.log("计算属性： ")
-        console.log(this.goods)
-        let t = 0 //总价
-        this.goods.forEach(function(v){
+      total(){
+        let t = 0
+        this.list.forEach(function(v){
           t += v.shop_price * v.number
         })
         return t
@@ -160,7 +157,7 @@
       list:[]
     },
     methods:{
-      addCart(k){    //修改商品数量
+      addCart(k){
         this.list[k].number++
       }
     },

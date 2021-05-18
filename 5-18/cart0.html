@@ -97,7 +97,7 @@
   <div class="container">
     <div class="cart">
       <cart-head></cart-head>
-      <cart-list v-bind:xxx="list" @add-cart="addCart"></cart-list>
+      <cart-list v-bind:xxx="list" @add-cart="addCart" ></cart-list>
       <cart-bottom v-bind:goods="list"></cart-bottom>
     </div>
   </div>
@@ -115,8 +115,9 @@
   let CartList = {
     props:['xxx'],
     methods:{
-      add(k){
-
+      changeNum(k,ev){
+        console.log(ev.target.value)
+        this.xxx[k].number = ev.target.value
       }
     },
     template: `<div>
@@ -126,7 +127,7 @@
           <div class="price" >{{ item.shop_price }}</div>
           <div class="change">
             <a href="">－</a>
-            <input type="text" class="num" :value="item.number"/>
+            <input type="text" class="num" @blur="changeNum(k,$event)" :value="item.number"/>
             <a href="" @click.prevent="$emit('add-cart',k)">＋</a>
           </div>
           <div class="del">×</div>
@@ -139,8 +140,6 @@
     props: ['goods'],
     computed:{
       total(){    //商品总价
-        console.log("计算属性： ")
-        console.log(this.goods)
         let t = 0 //总价
         this.goods.forEach(function(v){
           t += v.shop_price * v.number
@@ -162,7 +161,7 @@
     methods:{
       addCart(k){    //修改商品数量
         this.list[k].number++
-      }
+      },
     },
     created(){
       //请求列表接口

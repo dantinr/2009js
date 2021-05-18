@@ -97,8 +97,8 @@
   <div class="container">
     <div class="cart">
       <cart-head></cart-head>
-      <cart-list v-bind:xxx="list" v-on:add-cart="addCart"></cart-list>
-      <cart-bottom :list="list"></cart-bottom>
+      <cart-list v-bind:xxx="list" @add-cart="addCart" @change-cart="changeCart"></cart-list>
+      <cart-bottom v-bind:goods="list"></cart-bottom>
     </div>
   </div>
 </div>
@@ -114,11 +114,6 @@
   //购物车列表
   let CartList = {
     props:['xxx'],
-    methods:{
-      add(k){
-
-      }
-    },
     template: `<div>
         <div class="item" v-for="(item,k) in xxx" :key="item.goods_id">
           <img src="/imgs/a.jpg"/>
@@ -126,7 +121,7 @@
           <div class="price" >{{ item.shop_price }}</div>
           <div class="change">
             <a href="">－</a>
-            <input type="text" class="num" :value="item.number"/>
+            <input type="text" class="num" @blur="$emit('change-cart',k,$event)" :value="item.number"/>
             <a href="" @click.prevent="$emit('add-cart',k)">＋</a>
           </div>
           <div class="del">×</div>
@@ -134,12 +129,13 @@
       </div>`
   }
 
+  //购物车底部
   let CartBottom = {
-    props: ['list'],
+    props: ['goods'],
     computed:{
-      total(){
-        let t = 0
-        this.list.forEach(function(v){
+      total(){    //商品总价
+        let t = 0 //总价
+        this.goods.forEach(function(v){
           t += v.shop_price * v.number
         })
         return t
@@ -157,8 +153,13 @@
       list:[]
     },
     methods:{
-      addCart(k){
+      addCart(k){    //修改商品数量
         this.list[k].number++
+      },
+      //修改商品数量
+      changeCart(k,ev){
+        console.log(k,ev)
+        this.list[k].number = ev.target.value
       }
     },
     created(){

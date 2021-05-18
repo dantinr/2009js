@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>子组件传值</title>
+</head>
+<body>
+
+  <div id="app">
+      <p> {{ num }} </p>
+      <add-num @add-number="addNum"></add-num>
+  </div>
+
+  <script src="/js/vue.js"></script>
+  <script>
+
+    //定义一个局部组件
+    let AddNum = {
+      template: `
+        <button @click="$emit('add-number',2)">++</button>
+      `
+    }
+
+    new Vue({
+      el: "#app",
+      methods:{
+        addNum(v){
+          this.num += v      //this.num = this.num+2
+        }
+      },
+      data:{
+        num: 0
+      },
+      components:{
+        "add-num" : AddNum
+      },
+    })
+
+  </script>
+</body>
+</html>
